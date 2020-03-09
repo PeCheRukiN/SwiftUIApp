@@ -9,13 +9,14 @@
 import SwiftUI
 
 struct FilterView: View {
+    
+    @Binding var isFavoritesShowed: Bool
+    
+    @EnvironmentObject var viewModel: FoodListViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterView()
+        Toggle(isOn: $isFavoritesShowed) {
+            Text(viewModel.filterButtonName)
+        }    
     }
 }

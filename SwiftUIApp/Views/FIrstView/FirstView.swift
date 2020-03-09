@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct FirstView: View {
+    
+    @Binding var destinationTabIndex: Int
+    @Binding var shouldShowFoodItem: Bool 
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct FirstView_Previews: PreviewProvider {
-    static var previews: some View {
-        FirstView()
+        Button(action: {
+            self.destinationTabIndex = 1
+            self.shouldShowFoodItem = true
+        }) {
+            Text("Go to Food List first item")
+        }
     }
 }

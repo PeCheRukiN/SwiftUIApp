@@ -8,27 +8,48 @@
 
 import SwiftUI
 
-struct RootView: View {
-    var body: some View {
-        TabView {
-            
-            List {
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
-            }
-            .tabItem {
-                Text("List")
-                Image("")
-            }
-        }
-        
-    }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
+
+struct RootView: View {
+    
+    @EnvironmentObject var foodListViewModel: FoodListViewModel
+    
+    @State var selectedTabIndex = 0
+    @State var shoulsShowItem: Bool = false
+    
+    var body: some View {
+        
+        TabView(selection: $selectedTabIndex) {
+            
+            FirstView(destinationTabIndex: $selectedTabIndex,
+                      shouldShowFoodItem: $foodListViewModel.shouldShowFirstItem)
+                .tag(0)
+                .tabItem {
+                    VStack {
+                        Text("First view")
+                        Image(systemName: "square.and.arrow.up")
+                    }
+            }
+            
+            FoodListView()
+                .environmentObject(foodListViewModel)
+                .tag(1)
+                .tabItem {
+                    VStack {
+                        Text("Food List")
+                        Image(systemName: "flame.fill")
+                    }
+            }
+            
+            AboutAppView()
+                .tag(2)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "star.fill")
+                        Text("About")
+                    }
+            }
+            
+        } // TabView
     }
 }

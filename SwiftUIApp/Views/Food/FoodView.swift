@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct FoodView: View {
+    
+    let foodName: String
+    let description: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct FoodView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodView()
+        ScrollView {
+            EmptyView()
+            Text(description)
+                .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        }
+        .navigationBarTitle(foodName)
     }
 }

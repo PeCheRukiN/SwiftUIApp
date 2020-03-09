@@ -9,13 +9,38 @@
 import SwiftUI
 
 struct AboutAppView: View {
+    
+    @State var isAboutShown: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("About App")
+                .simultaneousGesture(TapGesture().onEnded {
+                    self.isAboutShown.toggle()
+                })
+        }
+        .sheet(isPresented: $isAboutShown, onDismiss: { print("Modal Closed") }) {
+            AboutAppViewModal()
+        }
     }
 }
 
-struct AboutAppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutAppView()
+struct AboutAppViewModal: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
+                Text("Close")
+            }
+            Spacer()
+            Image(systemName: "tortoise")
+                .foregroundColor(.red)
+                .font(.largeTitle)
+            Spacer()
+            Spacer()
+        }
     }
 }

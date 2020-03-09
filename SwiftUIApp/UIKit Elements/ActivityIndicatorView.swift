@@ -2,8 +2,8 @@
 //  ActivityIndicatorView.swift
 //  SwiftUIApp
 //
-//  Created by exey on 27.02.2020.
-//  Copyright © 2020 exey. All rights reserved.
+//  Created by Artem Pecherukin on 09.03.2020.
+//  Copyright © 2020 pecherukin. All rights reserved.
 //
 
 import UIKit

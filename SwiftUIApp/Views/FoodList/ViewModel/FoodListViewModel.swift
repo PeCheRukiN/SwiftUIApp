@@ -8,12 +8,16 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class FoodListViewModel: ObservableObject {
     
     @Published private(set) var filterButtonName = "Show favorites"
     @Published private(set) var foodList: [Food] = []
     @Published private(set) var isLoading = false
+    @Published var shouldShowFirstItem: Bool = false
+        
+    private var disposeBag: Set<AnyCancellable> = .init()
     
     init() {
         loadFromServer()
